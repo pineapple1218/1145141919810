@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>电脑电量检测器</title>
+    <style>
+        /* 页面整体背景，带一点淡淡的科技灰 */
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f5f7fa;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+
+        /* 模拟软件窗口的白色大卡片 */
+        .window-card {
+            width: 85%;
+            max-width: 360px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            padding: 40px 20px;
+            text-align: center;
+            border: 1px solid #eef2f5;
+        }
+
+        /* 软件大标题 */
+        .title {
+            font-size: 24px;
+            color: #333333;
+            font-weight: 600;
+            margin-bottom: 40px;
+            letter-spacing: 1px;
+        }
+
+        /* “检测电量”按钮样式 */
+        .btn {
+            background-color: #ffffff;
+            color: #333333;
+            border: 1px solid #dcdfe6;
+            padding: 12px 36px;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+        }
+
+        /* 按钮按下去的反馈效果 */
+        .btn:active {
+            background-color: #f5f7fa;
+            transform: scale(0.98);
+        }
+
+        /* 遮罩层：弹窗出来时让背景变暗 */
+        .mask {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.4);
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+        }
+
+        /* 弹窗对话框样式 */
+        .dialog {
+            width: 280px;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            animation: popUp 0.2s ease-out;
+        }
+
+        .dialog-header {
+            padding: 15px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .dialog-body {
+            padding: 30px 20px;
+            font-size: 18px;
+            color: #555;
+        }
+
+        .dialog-footer {
+            border-top: 1px solid #f0f0f0;
+        }
+
+        /* 弹窗里的“确定”按钮 */
+        .dialog-btn {
+            width: 100%;
+            padding: 14px 0;
+            background: none;
+            border: none;
+            font-size: 16px;
+            color: #007aff; /* 经典的蓝色确定键 */
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .dialog-btn:active {
+            background-color: #f9f9f9;
+        }
+
+        /* 弹窗弹出的动画效果 */
+        @keyframes popUp {
+            from { transform: scale(0.85); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="window-card">
+        <div class="title">电脑手机电量检测器</div>
+        <button class="btn" onclick="showAlert()">检测电量</button>
+    </div>
+
+    <div class="mask" id="alertMask">
+        <div class="dialog">
+            <div class="dialog-header">检测结果</div>
+            <div class="dialog-body">有电</div>
+            <div class="dialog-footer">
+                <button class="dialog-btn" onclick="closeAlert()">确定</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 显示弹窗
+        function showAlert() {
+            document.getElementById('alertMask').style.display = 'flex';
+        }
+        // 关闭弹窗
+        function closeAlert() {
+            document.getElementById('alertMask').style.display = 'none';
+        }
+    </script>
+
+</body>
+</html>
